@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() {
   let computer = Math.floor((Math.random() * 3) + 1);
 
@@ -8,12 +11,6 @@ function getComputerChoice() {
   } else {
     return 'scissors';
   }
-}
-
-function getHumanChoice() {
-  let human = prompt('rock, paper, or scissor?');
-
-  return human;
 }
 
 function playRound(humanChoice, ComputerChoice) {
@@ -39,23 +36,35 @@ function playRound(humanChoice, ComputerChoice) {
 }
 
 function playGame() {
-  let humanScore = 0;
-  let computerScore = 0;
+  const allButtons = document.querySelectorAll('button');
+  const display = document.querySelector('.display');
+  const changeHumanScore = document.querySelector('.change-human-score');
+  const changeComputerScore = document.querySelector('.change-computer-score');
 
-  for (let i = 0; i < 5; i++) {
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice(); 
-    console.log(playRound(humanSelection, computerSelection));
+  allButtons.forEach(eachButton => {
+    eachButton.addEventListener('click', () => {
+      const humanSelection = eachButton.textContent;
+      const computerSelection = getComputerChoice();
+      display.textContent = playRound(humanSelection, computerSelection);
+      let check = playRound(humanSelection, computerSelection);
 
-    if (playRound(humanSelection, computerSelection) == 'you win')  {
-      humanScore++;
-    } else if (playRound(humanSelection, computerSelection) == 'you lose') {
-      computerScore++;
-    }
-  }
+      if (humanScore < 5 && computerScore < 5) {
+        if (check == 'you win') {
+          humanScore++;
+          changeHumanScore.textContent = humanScore;
+        } else if (check == 'you lose') {
+          computerScore++;
+          changeComputerScore.textContent = computerScore;
+        }
+      }
 
-  console.log('human: ' + humanScore);
-  console.log('computer: ' + computerScore);
+      if (humanScore == 5) {
+        display.textContent = 'Human wins the game';
+      } else if (computerScore == 5) {
+        display.textContent = 'Computer wins the game';
+      }
+    })
+  });
 }
 
 playGame();
