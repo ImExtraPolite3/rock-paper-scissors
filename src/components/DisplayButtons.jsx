@@ -1,4 +1,4 @@
-import getUser from './getUser';
+import getUser from './playGame';
 
 const buttonNames = ['rock', 'paper', 'scissors'];
 
