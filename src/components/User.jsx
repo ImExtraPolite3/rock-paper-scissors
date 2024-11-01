@@ -3,7 +3,7 @@ const buttonNames = ['rock', 'paper', 'scissors'];
 function CreateButton({ name }) {
   return (
     <>
-      <button className={name} key={name}>
+      <button className={`choice-buttons ${name}`} key={name}>
         {name}
       </button>
     </>
