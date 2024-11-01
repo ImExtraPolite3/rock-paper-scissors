@@ -1,4 +1,4 @@
-import GameButtons from './components/User';
+import GameButtons from './components/DisplayButtons';
 
 function App() {
   return (
