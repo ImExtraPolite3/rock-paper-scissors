@@ -1,5 +1,4 @@
 import getUser from './getUser';
-import { useState } from 'react';
 
 const buttonNames = ['rock', 'paper', 'scissors'];
 
