@@ -1,11 +1,5 @@
-import GameButtons from './components/DisplayButtons';
-
 function App() {
-  return (
-    <>
-      <GameButtons />
-    </>
-  );
+  return <></>;
 }
 
 export default App;
