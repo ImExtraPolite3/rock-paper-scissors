@@ -1,21 +1,27 @@
-const conditions = ['player wins', 'computer wins', 'tie'];
+const buttonChoices = ['rock', 'paper', 'scissors'];
 
-function gameLogic(userChoice, computerChoice) {
-  if (
-    (computerChoice === 'rock' && userChoice === 'rock') ||
-    (computerChoice === 'paper' && userChoice === 'paper') ||
-    (computerChoice === 'scissors' && userChoice === 'scissors')
-  ) {
-    return conditions[2];
-  } else if (
-    (computerChoice === 'rock' && userChoice === 'scissors') ||
-    (computerChoice === 'paper' && userChoice === 'rock') ||
-    (computerChoice === 'scissors' && userChoice === 'paper')
-  ) {
-    return conditions[1];
-  } else {
-    return conditions[0];
-  }
+function ButtonProp({ name }) {
+  return (
+    <div className={name} key={name}>
+      {name}
+    </div>
+  );
 }
 
-export { gameLogic };
+function CreateButton() {
+  return buttonChoices.map((eachButton) => {
+    return (
+      <>
+        <ButtonProp name={eachButton} />;
+      </>
+    );
+  });
+}
+
+export default function DisplayButton() {
+  return (
+    <div>
+      <CreateButton />
+    </div>
+  );
+}
