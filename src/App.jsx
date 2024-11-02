@@ -1,5 +1,12 @@
+import gameLogic from './components/gameLogic';
+import DisplayButton from './components/Game';
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <DisplayButton />
+    </>
+  );
 }
 
 export default App;

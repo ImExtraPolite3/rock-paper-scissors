@@ -2,9 +2,9 @@ const buttonChoices = ['rock', 'paper', 'scissors'];
 
 function ButtonProp({ name }) {
   return (
-    <div className={name} key={name}>
+    <button className={name} key={name}>
       {name}
-    </div>
+    </button>
   );
 }
 
@@ -12,7 +12,7 @@ function CreateButton() {
   return buttonChoices.map((eachButton) => {
     return (
       <>
-        <ButtonProp name={eachButton} />;
+        <ButtonProp name={eachButton} />
       </>
     );
   });
