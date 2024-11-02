@@ -1,8 +1,16 @@
+import { userChoice } from './choices';
+
 const buttonChoices = ['rock', 'paper', 'scissors'];
 
 function ButtonProp({ name }) {
   return (
-    <button className={name} key={name}>
+    <button
+      className={name}
+      onClick={() => {
+        userChoice(name);
+      }}
+      key={name}
+    >
       {name}
     </button>
   );
