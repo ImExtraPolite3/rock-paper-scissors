@@ -1,26 +1,27 @@
-import { userChoice } from './choices';
+import { useState } from 'react';
 
 const buttonChoices = ['rock', 'paper', 'scissors'];
 
-function ButtonProp({ name }) {
+function ButtonProp({ name, whenClick }) {
   return (
-    <button
-      className={name}
-      onClick={() => {
-        userChoice(name);
-      }}
-      key={name}
-    >
+    <button className={name} onClick={whenClick} key={name}>
       {name}
     </button>
   );
 }
 
 function CreateButton() {
+  const [user, setUser] = useState('');
+
   return buttonChoices.map((eachButton) => {
     return (
       <>
-        <ButtonProp name={eachButton} />
+        <ButtonProp
+          name={eachButton}
+          whenClick={(e) => {
+            setUser(e.target.textContent);
+          }}
+        />
       </>
     );
   });
