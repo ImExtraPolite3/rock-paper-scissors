@@ -10,9 +10,7 @@ function ButtonProp({ name, whenClick }) {
   );
 }
 
-function CreateButton() {
-  const [user, setUser] = useState('');
-
+function CreateButton({ setUser }) {
   return buttonChoices.map((eachButton) => {
     return (
       <>
@@ -28,9 +26,12 @@ function CreateButton() {
 }
 
 export default function DisplayButton() {
+  const [user, setUser] = useState('');
+
   return (
     <div>
-      <CreateButton />
+      <p>{user}</p>
+      <CreateButton setUser={setUser} />
     </div>
   );
 }
