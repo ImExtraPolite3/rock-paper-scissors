@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import computerChoice from './computerChoice';
+import gameLogic from './gameLogic';
 
 const buttonChoices = ['rock', 'paper', 'scissors'];
 
@@ -17,7 +19,7 @@ function CreateButton({ setUser }) {
         <ButtonProp
           name={eachButton}
           whenClick={(e) => {
-            setUser(e.target.textContent);
+            setUser(gameLogic(e.target.textContent, computerChoice()));
           }}
         />
       </>
