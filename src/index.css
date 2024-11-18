@@ -13,10 +13,6 @@ body {
   background-color: #17b2e8;
 }
 
-.game {
-  display: none;
-}
-
 .open-page {
   margin-top: 200px;
   display: flex;
