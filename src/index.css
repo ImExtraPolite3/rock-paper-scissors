@@ -44,6 +44,54 @@ body {
   cursor: pointer;
 }
 
+.game {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 450px;
+}
+
+.scores {
+  display: flex;
+  font-size: 0.7rem;
+  justify-content: space-evenly;
+}
+
+.display-round-result {
+  text-align: center;
+}
+
+.game-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  button {
+    border: solid 1px;
+    background-color: #4fdc23;
+    width: 40vw;
+    margin: auto;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  button > img {
+    width: 50%;
+  }
+}
+
+.scissors {
+  grid-column: 1 / 3;
+}
+
 @keyframes bobbing {
   50% {
     transform: translateY(-20px);
