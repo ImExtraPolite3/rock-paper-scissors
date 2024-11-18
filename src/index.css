@@ -9,6 +9,10 @@
   font-family: 'PressStart';
 }
 
+body {
+  background-color: #17b2e8;
+}
+
 .game {
   display: none;
 }
@@ -25,6 +29,7 @@
 
 .game-title {
   font-size: 2.3rem;
+  animation: bobbing 5000ms infinite;
 }
 
 .start-game {
@@ -33,4 +38,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  border: solid 1px;
+  background-color: #4fdc23;
+}
+
+.start-game:hover {
+  transform: scale(1.1);
+  background-color: #50c43b;
+  cursor: pointer;
+
+  img {
+    fill: #17b2e8;
+  }
+}
+
+@keyframes bobbing {
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
