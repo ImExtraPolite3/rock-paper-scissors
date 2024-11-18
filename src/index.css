@@ -9,11 +9,28 @@
   font-family: 'PressStart';
 }
 
-#root > div {
-  display: flex;
-  flex-direction: column;
+.game {
+  display: none;
 }
 
-.scores {
+.open-page {
+  margin-top: 200px;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  height: 40vh;
+}
+
+.game-title {
+  font-size: 2.3rem;
+}
+
+.start-game {
+  width: 20vw;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
