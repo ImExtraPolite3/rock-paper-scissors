@@ -4,9 +4,10 @@ import gameLogic from './gameLogic';
 
 const buttonChoices = ['rock', 'paper', 'scissors'];
 
-function ButtonProp({ name, whenClick }) {
+function ButtonProp({ name, whenClick, imgSource }) {
   return (
     <button className={name} onClick={whenClick} key={name}>
+      <img src={imgSource} />
       {name}
     </button>
   );
@@ -17,6 +18,7 @@ function CreateButton({ setUser, setWins, setLoses }) {
     return (
       <>
         <ButtonProp
+          imgSource={'scissors.svg'}
           name={eachButton}
           whenClick={(e) => {
             let playGame = gameLogic(e.target.textContent, computerChoice());
@@ -48,7 +50,7 @@ export default function DisplayButton() {
       <div className="display-round-result">
         <h1>{user}</h1>
       </div>
-      <div>
+      <div className="game-buttons">
         <CreateButton setUser={setUser} setWins={setWins} setLoses={setLoses} />
       </div>
     </>

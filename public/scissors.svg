@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 12">
+  <!-- Left blade -->
+  <rect x="4" y="4" width="1" height="2" fill="black"/>
+  <rect x="3" y="2" width="1" height="4" fill="black"/>
+  <rect x="2" y="0" width="1" height="4" fill="black"/>
+
+  <!--  Right blade  -->
+  <rect x="6" y="4" width="1" height="2" fill="black"/>
+  <rect x="7" y="2" width="1" height="4" fill="black"/>
+  <rect x="8" y="0" width="1" height="4" fill="black"/>
+  
+  <!-- Center connector -->
+  <rect x="4" y="5" width="3" height="1" fill="black"/>
+  <rect x="4" y="6" width="1" height="1" fill="black"/>
+  <rect x="6" y="6" width="1" height="1" fill="black"/>
+
+  
+  <!-- Bottom connector to handles -->
+  <rect x="3" y="7" width="5" height="1" fill="black"/>
+  
+  <!-- Left handle (hollow square) -->
+  <rect x="1" y="8" width="4" height="1" fill="black"/>
+  <rect x="0" y="9" width="1" height="2" fill="black"/>
+  <rect x="3" y="9" width="1" height="2" fill="black"/>
+  <rect x="1" y="11" width="2" height="1" fill="black"/>
+  
+  <!-- Right handle (hollow square) -->
+  <rect x="6" y="8" width="4" height="1" fill="black"/>
+  <rect x="7" y="9" width="1" height="2" fill="black"/>
+  <rect x="10" y="9" width="1" height="2" fill="black"/>
+  <rect x="8" y="11" width="2" height="1" fill="black"/>
+</svg>
