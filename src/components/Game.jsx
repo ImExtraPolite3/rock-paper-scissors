@@ -40,7 +40,7 @@ export default function DisplayButton() {
   const [loses, setLoses] = useState(0);
 
   return (
-    <div>
+    <div className="game">
       <div className="scores">
         <h3 className="wins">{wins}</h3>
         <h3 className="loses">{loses}</h3>
