@@ -35,18 +35,22 @@ function CreateButton({ setUser, setWins, setLoses }) {
 }
 
 export default function DisplayButton() {
-  const [user, setUser] = useState('Click button to start game');
+  const [user, setUser] = useState('ROCK PAPER OR SCISSORS?');
   const [wins, setWins] = useState(0);
   const [loses, setLoses] = useState(0);
 
   return (
     <>
       <div className="scores">
-        <h3 className="wins">{wins}</h3>
-        <h3 className="loses">{loses}</h3>
+        <h3 className="wins">{`Player Score: ${wins}`}</h3>
+        <h3 className="loses">{`Computer Score: ${loses}`}</h3>
       </div>
-      <h1>{user}</h1>
-      <CreateButton setUser={setUser} setWins={setWins} setLoses={setLoses} />
+      <div className="display-round-result">
+        <h1>{user}</h1>
+      </div>
+      <div>
+        <CreateButton setUser={setUser} setWins={setWins} setLoses={setLoses} />
+      </div>
     </>
   );
 }
