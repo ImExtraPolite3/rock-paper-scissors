@@ -40,13 +40,13 @@ export default function DisplayButton() {
   const [loses, setLoses] = useState(0);
 
   return (
-    <div className="game">
+    <>
       <div className="scores">
         <h3 className="wins">{wins}</h3>
         <h3 className="loses">{loses}</h3>
       </div>
       <h1>{user}</h1>
       <CreateButton setUser={setUser} setWins={setWins} setLoses={setLoses} />
-    </div>
+    </>
   );
 }
