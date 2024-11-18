@@ -42,10 +42,6 @@ body {
   transform: scale(1.1);
   background-color: #50c43b;
   cursor: pointer;
-
-  img {
-    fill: #17b2e8;
-  }
 }
 
 @keyframes bobbing {
