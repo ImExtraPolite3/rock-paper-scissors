@@ -3,6 +3,7 @@ import computerChoice from './computerChoice';
 import gameLogic from './gameLogic';
 
 const buttonChoices = ['rock', 'paper', 'scissors'];
+const buttonImages = ['rock.svg', 'paper.svg', 'scissors.svg'];
 
 function ButtonProp({ name, whenClick, imgSource }) {
   return (
@@ -14,11 +15,11 @@ function ButtonProp({ name, whenClick, imgSource }) {
 }
 
 function CreateButton({ setUser, setWins, setLoses }) {
-  return buttonChoices.map((eachButton) => {
+  return buttonChoices.map((eachButton, index) => {
     return (
       <>
         <ButtonProp
-          imgSource={'scissors.svg'}
+          imgSource={buttonImages[index]}
           name={eachButton}
           whenClick={(e) => {
             let playGame = gameLogic(e.target.textContent, computerChoice());
