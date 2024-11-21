@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import computerChoice from './computerChoice';
 import gameLogic from './gameLogic';
+import EndCondition from './EndCondition';
 
 const buttonChoices = ['rock', 'paper', 'scissors'];
 const buttonImages = ['rock.svg', 'paper.svg', 'scissors.svg'];
@@ -36,7 +37,7 @@ function CreateButton({
                 if (prevWins < 4) {
                   return prevWins + 1;
                 } else {
-                  setEndCondition('you win');
+                  setEndCondition(<EndCondition condition={'You Win'} />);
                   return prevWins + 1;
                 }
               });
@@ -46,7 +47,7 @@ function CreateButton({
                 if (prevLose < 4) {
                   return prevLose + 1;
                 } else {
-                  setEndCondition('you lose');
+                  setEndCondition(<EndCondition condition={'You Lose'} />);
                   return prevLose;
                 }
               });
@@ -64,7 +65,7 @@ export default function DisplayButton() {
   const [wins, setWins] = useState(0);
   const [loses, setLoses] = useState(0);
   const [animate, setAnimate] = useState('');
-  const [endCondition, setEndCondition] = useState('for test');
+  const [endCondition, setEndCondition] = useState();
 
   const handleSetEndAnimation = () => {
     setAnimate('');
@@ -77,7 +78,6 @@ export default function DisplayButton() {
         <h3 className="loses">{`Computer Score: ${loses}`}</h3>
       </div>
       <div className="display-round-result">
-        <p>{endCondition}</p>
         <h1
           style={{ animation: animate }}
           onAnimationEnd={handleSetEndAnimation}
@@ -94,6 +94,7 @@ export default function DisplayButton() {
           setEndCondition={setEndCondition}
         />
       </div>
+      <>{endCondition}</>
     </>
   );
 }
