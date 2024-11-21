@@ -56,10 +56,6 @@ body {
   text-align: center;
 }
 
-.display-round-result > h1 {
-  animation: lose 100ms both 2;
-}
-
 .game-buttons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -112,8 +108,16 @@ button:hover {
 @keyframes lose {
   50% {
     transform: translateX(-5px);
+    color: red;
   }
   100% {
     transform: translateX(0px);
+  }
+}
+
+@keyframes win {
+  50% {
+    transform: scale(1.2);
+    color: green;
   }
 }

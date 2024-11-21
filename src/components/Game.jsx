@@ -14,7 +14,7 @@ function ButtonProp({ name, whenClick, imgSource }) {
   );
 }
 
-function CreateButton({ setUser, setWins, setLoses }) {
+function CreateButton({ setUser, setWins, setLoses, setAnimate }) {
   return buttonChoices.map((eachButton, index) => {
     return (
       <>
@@ -27,8 +27,12 @@ function CreateButton({ setUser, setWins, setLoses }) {
 
             if (playGame === 'player wins') {
               setWins((prevWins) => prevWins + 1);
+              setAnimate('win 250ms both');
             } else if (playGame === 'computer wins') {
               setLoses((prevLose) => prevLose + 1);
+              setAnimate('lose 100ms both 2');
+            } else {
+              setAnimate('');
             }
           }}
         />
@@ -41,6 +45,7 @@ export default function DisplayButton() {
   const [user, setUser] = useState('ROCK PAPER OR SCISSORS?');
   const [wins, setWins] = useState(0);
   const [loses, setLoses] = useState(0);
+  const [animate, setAnimate] = useState('');
 
   return (
     <>
@@ -49,10 +54,15 @@ export default function DisplayButton() {
         <h3 className="loses">{`Computer Score: ${loses}`}</h3>
       </div>
       <div className="display-round-result">
-        <h1>{user}</h1>
+        <h1 style={{ animation: animate }}>{user}</h1>
       </div>
       <div className="game-buttons">
-        <CreateButton setUser={setUser} setWins={setWins} setLoses={setLoses} />
+        <CreateButton
+          setUser={setUser}
+          setWins={setWins}
+          setLoses={setLoses}
+          setAnimate={setAnimate}
+        />
       </div>
     </>
   );
