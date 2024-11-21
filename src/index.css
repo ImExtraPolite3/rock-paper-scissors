@@ -97,6 +97,10 @@ button:hover {
   grid-column: 1 / 3;
 }
 
+.endClick {
+  pointer-events: none;
+}
+
 @keyframes bobbing {
   50% {
     transform: translateY(-20px);

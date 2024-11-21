@@ -6,9 +6,9 @@ import EndCondition from './EndCondition';
 const buttonChoices = ['rock', 'paper', 'scissors'];
 const buttonImages = ['rock.svg', 'paper.svg', 'scissors.svg'];
 
-function ButtonProp({ name, whenClick, imgSource }) {
+function ButtonProp({ name, whenClick, imgSource, endClick }) {
   return (
-    <button className={name} onClick={whenClick} key={name}>
+    <button className={`${name} ${endClick}`} onClick={whenClick} key={name}>
       <img src={imgSource} />
       {name}
     </button>
@@ -22,11 +22,14 @@ function CreateButton({
   setAnimate,
   setEndCondition,
 }) {
+  const [noClick, setNoClick] = useState('');
+
   return buttonChoices.map((eachButton, index) => {
     return (
       <>
         <ButtonProp
           imgSource={buttonImages[index]}
+          endClick={noClick}
           name={eachButton}
           whenClick={(e) => {
             let playGame = gameLogic(e.target.textContent, computerChoice());
@@ -38,6 +41,7 @@ function CreateButton({
                   return prevWins + 1;
                 } else {
                   setEndCondition(<EndCondition condition={'You Win'} />);
+                  setNoClick('endClick');
                   return prevWins + 1;
                 }
               });
@@ -48,7 +52,8 @@ function CreateButton({
                   return prevLose + 1;
                 } else {
                   setEndCondition(<EndCondition condition={'You Lose'} />);
-                  return prevLose;
+                  setNoClick('endClick');
+                  return prevLose + 1;
                 }
               });
               setAnimate('lose 100ms both 2');

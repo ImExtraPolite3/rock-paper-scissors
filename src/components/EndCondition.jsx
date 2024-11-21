@@ -1,8 +1,8 @@
 export default function EndCondition({ condition }) {
   return (
-    <div className="end-condition">
+    <dialog open className="end-condition">
       <h1>{condition}</h1>
       <button>Reset Game</button>
-    </div>
+    </dialog>
   );
 }
