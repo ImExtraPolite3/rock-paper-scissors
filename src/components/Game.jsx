@@ -41,7 +41,7 @@ function CreateButton({
                   return prevWins + 1;
                 } else {
                   setEndCondition(<EndCondition condition={'You Win'} />);
-                  setNoClick('endClick');
+                  setNoClick('end-click');
                   return prevWins + 1;
                 }
               });
@@ -52,7 +52,7 @@ function CreateButton({
                   return prevLose + 1;
                 } else {
                   setEndCondition(<EndCondition condition={'You Lose'} />);
-                  setNoClick('endClick');
+                  setNoClick('end-click');
                   return prevLose + 1;
                 }
               });

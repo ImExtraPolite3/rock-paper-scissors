@@ -97,8 +97,11 @@ button:hover {
   grid-column: 1 / 3;
 }
 
-.endClick {
+.end-click {
   pointer-events: none;
+}
+
+.end-condition {
 }
 
 @keyframes bobbing {
