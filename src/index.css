@@ -47,6 +47,7 @@ body {
 }
 
 .scores {
+  text-align: center;
   display: flex;
   font-size: 0.7rem;
   justify-content: space-evenly;

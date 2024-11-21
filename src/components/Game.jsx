@@ -31,8 +31,6 @@ function CreateButton({ setUser, setWins, setLoses, setAnimate }) {
             } else if (playGame === 'computer wins') {
               setLoses((prevLose) => prevLose + 1);
               setAnimate('lose 100ms both 2');
-            } else {
-              setAnimate('');
             }
           }}
         />
@@ -47,6 +45,10 @@ export default function DisplayButton() {
   const [loses, setLoses] = useState(0);
   const [animate, setAnimate] = useState('');
 
+  const handleSetEndAnimation = () => {
+    setAnimate('');
+  };
+
   return (
     <>
       <div className="scores">
@@ -54,7 +56,12 @@ export default function DisplayButton() {
         <h3 className="loses">{`Computer Score: ${loses}`}</h3>
       </div>
       <div className="display-round-result">
-        <h1 style={{ animation: animate }}>{user}</h1>
+        <h1
+          style={{ animation: animate }}
+          onAnimationEnd={handleSetEndAnimation}
+        >
+          {user}
+        </h1>
       </div>
       <div className="game-buttons">
         <CreateButton
