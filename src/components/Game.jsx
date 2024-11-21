@@ -14,7 +14,13 @@ function ButtonProp({ name, whenClick, imgSource }) {
   );
 }
 
-function CreateButton({ setUser, setWins, setLoses, setAnimate }) {
+function CreateButton({
+  setUser,
+  setWins,
+  setLoses,
+  setAnimate,
+  setEndCondition,
+}) {
   return buttonChoices.map((eachButton, index) => {
     return (
       <>
@@ -26,10 +32,24 @@ function CreateButton({ setUser, setWins, setLoses, setAnimate }) {
             setUser(playGame);
 
             if (playGame === 'player wins') {
-              setWins((prevWins) => prevWins + 1);
+              setWins((prevWins) => {
+                if (prevWins < 4) {
+                  return prevWins + 1;
+                } else {
+                  setEndCondition('you win');
+                  return prevWins + 1;
+                }
+              });
               setAnimate('win 250ms both');
             } else if (playGame === 'computer wins') {
-              setLoses((prevLose) => prevLose + 1);
+              setLoses((prevLose) => {
+                if (prevLose < 4) {
+                  return prevLose + 1;
+                } else {
+                  setEndCondition('you lose');
+                  return prevLose;
+                }
+              });
               setAnimate('lose 100ms both 2');
             }
           }}
@@ -44,6 +64,7 @@ export default function DisplayButton() {
   const [wins, setWins] = useState(0);
   const [loses, setLoses] = useState(0);
   const [animate, setAnimate] = useState('');
+  const [endCondition, setEndCondition] = useState('for test');
 
   const handleSetEndAnimation = () => {
     setAnimate('');
@@ -56,6 +77,7 @@ export default function DisplayButton() {
         <h3 className="loses">{`Computer Score: ${loses}`}</h3>
       </div>
       <div className="display-round-result">
+        <p>{endCondition}</p>
         <h1
           style={{ animation: animate }}
           onAnimationEnd={handleSetEndAnimation}
@@ -69,6 +91,7 @@ export default function DisplayButton() {
           setWins={setWins}
           setLoses={setLoses}
           setAnimate={setAnimate}
+          setEndCondition={setEndCondition}
         />
       </div>
     </>
