@@ -40,7 +40,17 @@ function CreateButton({
                 if (prevWins < 4) {
                   return prevWins + 1;
                 } else {
-                  setEndCondition(<EndCondition condition={'You Win'} />);
+                  setEndCondition(
+                    <EndCondition
+                      condition={'You Win'}
+                      reset={() => {
+                        setWins(0);
+                        setLoses(0);
+                        setUser('ROCK PAPER OR SCISSORS?');
+                        setNoClick('');
+                      }}
+                    />
+                  );
                   setNoClick('end-click');
                   return prevWins + 1;
                 }
@@ -51,7 +61,18 @@ function CreateButton({
                 if (prevLose < 4) {
                   return prevLose + 1;
                 } else {
-                  setEndCondition(<EndCondition condition={'You Lose'} />);
+                  setEndCondition(
+                    <EndCondition
+                      condition={'You Lose'}
+                      reset={() => {
+                        setWins(0);
+                        setLoses(0);
+                        setUser('ROCK PAPER OR SCISSORS?');
+                        setNoClick('');
+                      }}
+                    />
+                  );
+
                   setNoClick('end-click');
                   return prevLose + 1;
                 }
