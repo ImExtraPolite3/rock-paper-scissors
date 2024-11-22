@@ -23,6 +23,7 @@ function CreateButton({
   setEndCondition,
 }) {
   const [noClick, setNoClick] = useState('');
+  const [checkIfOpen, setIfOpen] = useState('none');
 
   return buttonChoices.map((eachButton, index) => {
     return (
@@ -38,6 +39,7 @@ function CreateButton({
             if (playGame === 'player wins') {
               setWins((prevWins) => {
                 if (prevWins < 4) {
+                  setIfOpen('');
                   return prevWins + 1;
                 } else {
                   setEndCondition(
@@ -64,6 +66,7 @@ function CreateButton({
                   setEndCondition(
                     <EndCondition
                       condition={'You Lose'}
+                      ifOpen={checkIfOpen}
                       reset={() => {
                         setWins(0);
                         setLoses(0);

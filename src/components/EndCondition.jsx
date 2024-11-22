@@ -1,15 +1,14 @@
 import { useState } from 'react';
 
-export default function EndCondition({ condition, reset }) {
-  const [ifOpen, setIfOpen] = useState(true);
-
+export default function EndCondition({ condition, reset, ifOpen }) {
   return (
-    <div className="end-condition" open={ifOpen}>
+    <div className="end-condition" style={{ display: ifOpen }}>
       <h1>{condition}</h1>
+      <h1>{ifOpen}</h1>
       <button
         onClick={() => {
+          ifOpen;
           reset();
-          setIfOpen(false);
         }}
       >
         Reset Game
