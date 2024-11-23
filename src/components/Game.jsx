@@ -28,7 +28,7 @@ function CreateButton({ setUser, setWins, setLoses, setAnimate }) {
 
             if (playGame === 'player wins') {
               setWins((prevWins) => {
-                if (prevWins < 4) {
+                if (prevWins < 5) {
                   return prevWins + 1;
                 } else {
                   return prevWins + 1;
@@ -37,7 +37,7 @@ function CreateButton({ setUser, setWins, setLoses, setAnimate }) {
               setAnimate('win 250ms both');
             } else if (playGame === 'computer wins') {
               setLoses((prevLose) => {
-                if (prevLose < 4) {
+                if (prevLose < 5) {
                   return prevLose + 1;
                 } else {
                   return prevLose + 1;
