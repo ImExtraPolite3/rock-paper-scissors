@@ -1,13 +1,11 @@
 import { useState } from 'react';
 
-export default function EndCondition({ condition, reset, ifOpen }) {
+export default function EndCondition({ condition, reset, modal }) {
   return (
-    <div className="end-condition" style={{ display: ifOpen }}>
+    <div className="end-condition" style={{ display: modal }}>
       <h1>{condition}</h1>
-      <h1>{ifOpen}</h1>
       <button
         onClick={() => {
-          ifOpen;
           reset();
         }}
       >

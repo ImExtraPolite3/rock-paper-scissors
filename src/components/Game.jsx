@@ -15,22 +15,12 @@ function ButtonProp({ name, whenClick, imgSource, endClick }) {
   );
 }
 
-function CreateButton({
-  setUser,
-  setWins,
-  setLoses,
-  setAnimate,
-  setEndCondition,
-}) {
-  const [noClick, setNoClick] = useState('');
-  const [checkIfOpen, setIfOpen] = useState('none');
-
+function CreateButton({ setUser, setWins, setLoses, setAnimate }) {
   return buttonChoices.map((eachButton, index) => {
     return (
       <>
         <ButtonProp
           imgSource={buttonImages[index]}
-          endClick={noClick}
           name={eachButton}
           whenClick={(e) => {
             let playGame = gameLogic(e.target.textContent, computerChoice());
@@ -39,21 +29,8 @@ function CreateButton({
             if (playGame === 'player wins') {
               setWins((prevWins) => {
                 if (prevWins < 4) {
-                  setIfOpen('');
                   return prevWins + 1;
                 } else {
-                  setEndCondition(
-                    <EndCondition
-                      condition={'You Win'}
-                      reset={() => {
-                        setWins(0);
-                        setLoses(0);
-                        setUser('ROCK PAPER OR SCISSORS?');
-                        setNoClick('');
-                      }}
-                    />
-                  );
-                  setNoClick('end-click');
                   return prevWins + 1;
                 }
               });
@@ -63,20 +40,6 @@ function CreateButton({
                 if (prevLose < 4) {
                   return prevLose + 1;
                 } else {
-                  setEndCondition(
-                    <EndCondition
-                      condition={'You Lose'}
-                      ifOpen={checkIfOpen}
-                      reset={() => {
-                        setWins(0);
-                        setLoses(0);
-                        setUser('ROCK PAPER OR SCISSORS?');
-                        setNoClick('');
-                      }}
-                    />
-                  );
-
-                  setNoClick('end-click');
                   return prevLose + 1;
                 }
               });
@@ -94,10 +57,29 @@ export default function DisplayButton() {
   const [wins, setWins] = useState(0);
   const [loses, setLoses] = useState(0);
   const [animate, setAnimate] = useState('');
-  const [endCondition, setEndCondition] = useState();
+  const [condition, setCondition] = useState('');
+  const [modal, setModal] = useState('none');
 
   const handleSetEndAnimation = () => {
     setAnimate('');
+  };
+
+  const checkEndCondition = () => {
+    if (wins === 4) {
+      setCondition('You Win');
+      setModal('block');
+    } else if (loses === 4) {
+      setCondition('You Lose');
+      setModal('block');
+    }
+  };
+
+  const resetGame = () => {
+    setUser('ROCK PAPER OR SCISSORS?');
+    setWins(0);
+    setLoses(0);
+    setModal('none');
+    setCondition('');
   };
 
   return (
@@ -117,13 +99,18 @@ export default function DisplayButton() {
       <div className="game-buttons">
         <CreateButton
           setUser={setUser}
-          setWins={setWins}
-          setLoses={setLoses}
+          setWins={(score) => {
+            setWins(score);
+            checkEndCondition();
+          }}
+          setLoses={(score) => {
+            setLoses(score);
+            checkEndCondition();
+          }}
           setAnimate={setAnimate}
-          setEndCondition={setEndCondition}
         />
       </div>
-      <>{endCondition}</>
+      <EndCondition condition={condition} reset={resetGame} modal={modal} />
     </>
   );
 }
