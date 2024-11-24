@@ -15,7 +15,7 @@ function ButtonProp({ name, img, whenClick }) {
   );
 }
 
-function CreateButton({ setResults, setWins, setLoses }) {
+function CreateButton({ setResults, setWins, setLoses, setHide, setRoundWin }) {
   return buttonName.map((eachButton, index) => {
     return (
       <ButtonProp
@@ -27,9 +27,23 @@ function CreateButton({ setResults, setWins, setLoses }) {
           setResults(gameResults);
 
           if (gameResults === 'player wins') {
-            setWins((prevWins) => prevWins + 1);
+            setWins((prevWins) => {
+              if (prevWins === 4) {
+                setRoundWin('You Win');
+                setHide('');
+              }
+
+              return Math.min(prevWins + 1, 5);
+            });
           } else if (gameResults === 'computer wins') {
-            setLoses((prevLoses) => prevLoses + 1);
+            setLoses((prevLoses) => {
+              if (prevLoses === 4) {
+                setRoundWin('You suck bozo');
+                setHide('');
+              }
+
+              return Math.min(prevLoses + 1, 5);
+            });
           }
         }}
       />
@@ -41,6 +55,9 @@ export default function Game() {
   const [results, setResults] = useState('ROCK PAPER OR SCISSORS?');
   const [wins, setWins] = useState(0);
   const [loses, setLoses] = useState(0);
+  const [hide, setHide] = useState('none');
+  const [roundWin, setRoundWin] = useState('');
+  const [reset, setReset] = useState('');
 
   return (
     <>
@@ -53,7 +70,24 @@ export default function Game() {
         setResults={setResults}
         setWins={setWins}
         setLoses={setLoses}
+        setHide={setHide}
+        setRoundWin={setRoundWin}
       />
+      <div className="game-end" style={{ display: hide }}>
+        <h1>{roundWin}</h1>
+        <button
+          onClick={() => {
+            setReset(() => {
+              setResults('ROCK PAPER OR SCISSORS?');
+              setWins(0);
+              setLoses(0);
+              setHide('none');
+            });
+          }}
+        >
+          Reset
+        </button>
+      </div>
     </>
   );
 }
