@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'PressStart';
+  src: url(/PressStart2P-Regular.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'PressStart';
+}
+
+body {
+  background-color: #17b2e8;
+}

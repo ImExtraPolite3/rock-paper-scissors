@@ -1,9 +1,9 @@
-import StartPage from './components/StartPage';
+import Game from './components/Game';
 
 function App() {
   return (
     <>
-      <StartPage />
+      <Game />
     </>
   );
 }
