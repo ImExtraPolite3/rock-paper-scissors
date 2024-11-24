@@ -60,19 +60,23 @@ export default function Game() {
   const [reset, setReset] = useState('');
 
   return (
-    <>
+    <div className="game">
       <div className="scores">
-        <p>{`Player Score ${wins}`}</p>
-        <p>{`Computer Score ${loses}`}</p>
+        <h3>{`Player Score: ${wins}`}</h3>
+        <h3>{`Computer Score: ${loses}`}</h3>
       </div>
-      <h1>{results}</h1>
-      <CreateButton
-        setResults={setResults}
-        setWins={setWins}
-        setLoses={setLoses}
-        setHide={setHide}
-        setRoundWin={setRoundWin}
-      />
+      <div className="display-round-result">
+        <h1>{results}</h1>
+      </div>
+      <div className="game-buttons">
+        <CreateButton
+          setResults={setResults}
+          setWins={setWins}
+          setLoses={setLoses}
+          setHide={setHide}
+          setRoundWin={setRoundWin}
+        />
+      </div>
       <div className="game-end" style={{ display: hide }}>
         <h1>{roundWin}</h1>
         <button
@@ -88,6 +92,6 @@ export default function Game() {
           Reset
         </button>
       </div>
-    </>
+    </div>
   );
 }
