@@ -18,7 +18,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 80vh;
+  gap: 50px;
 }
 
 .scores {
@@ -126,7 +126,6 @@ button:hover {
 @media (min-width: 700px) {
   .game {
     justify-content: space-between;
-    height: 60vh;
   }
 
   .scores {
