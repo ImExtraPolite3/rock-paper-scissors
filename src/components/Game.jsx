@@ -15,7 +15,15 @@ function ButtonProp({ name, img, whenClick }) {
   );
 }
 
-function CreateButton({ setResults, setWins, setLoses, setHide, setRoundWin }) {
+function CreateButton({
+  setResults,
+  setWins,
+  setLoses,
+  setHide,
+  setRoundWin,
+  setAnimation,
+  setPreventClick,
+}) {
   return buttonName.map((eachButton, index) => {
     return (
       <ButtonProp
@@ -29,21 +37,27 @@ function CreateButton({ setResults, setWins, setLoses, setHide, setRoundWin }) {
           if (gameResults === 'player wins') {
             setWins((prevWins) => {
               if (prevWins === 4) {
+                setPreventClick('none');
                 setRoundWin('You Win');
                 setHide('');
               }
 
+              setAnimation('win 250ms both');
               return Math.min(prevWins + 1, 5);
             });
           } else if (gameResults === 'computer wins') {
             setLoses((prevLoses) => {
               if (prevLoses === 4) {
-                setRoundWin('You suck bozo');
+                setPreventClick('none');
+                setRoundWin('You lose');
                 setHide('');
               }
 
+              setAnimation('lose 100ms both 2');
               return Math.min(prevLoses + 1, 5);
             });
+          } else {
+            setAnimation('tie 300ms both');
           }
         }}
       />
@@ -55,27 +69,42 @@ export default function Game() {
   const [results, setResults] = useState('ROCK PAPER OR SCISSORS?');
   const [wins, setWins] = useState(0);
   const [loses, setLoses] = useState(0);
+  const [animation, setAnimation] = useState('');
   const [hide, setHide] = useState('none');
   const [roundWin, setRoundWin] = useState('');
+  const [preventClick, setPreventClick] = useState('');
   const [reset, setReset] = useState('');
 
+  const handleSetAnimationEnd = () => {
+    setAnimation('');
+  };
+
   return (
-    <div className="game">
-      <div className="scores">
-        <h3>{`Player Score: ${wins}`}</h3>
-        <h3>{`Computer Score: ${loses}`}</h3>
-      </div>
-      <div className="display-round-result">
-        <h1>{results}</h1>
-      </div>
-      <div className="game-buttons">
-        <CreateButton
-          setResults={setResults}
-          setWins={setWins}
-          setLoses={setLoses}
-          setHide={setHide}
-          setRoundWin={setRoundWin}
-        />
+    <>
+      <div className="game" style={{ pointerEvents: preventClick }}>
+        <div className="scores">
+          <h3>{`Player Score: ${wins}`}</h3>
+          <h3>{`Computer Score: ${loses}`}</h3>
+        </div>
+        <div className="display-round-result">
+          <h1
+            style={{ animation: animation }}
+            onAnimationEnd={handleSetAnimationEnd}
+          >
+            {results}
+          </h1>
+        </div>
+        <div className="game-buttons">
+          <CreateButton
+            setResults={setResults}
+            setWins={setWins}
+            setLoses={setLoses}
+            setHide={setHide}
+            setRoundWin={setRoundWin}
+            setAnimation={setAnimation}
+            setPreventClick={setPreventClick}
+          />
+        </div>
       </div>
       <div className="game-end" style={{ display: hide }}>
         <h1>{roundWin}</h1>
@@ -86,12 +115,13 @@ export default function Game() {
               setWins(0);
               setLoses(0);
               setHide('none');
+              setPreventClick('');
             });
           }}
         >
           Reset
         </button>
       </div>
-    </div>
+    </>
   );
 }
